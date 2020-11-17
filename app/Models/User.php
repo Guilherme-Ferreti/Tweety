@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Traits\Followable;
+
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Followable;
 
     /**
      * The attributes that are mass assignable.
@@ -52,19 +54,7 @@ class User extends Authenticatable
     // Returns tweets from only 1 user  
     public function tweets()
     {
-        return $this->hasMany(Tweet::class);
-    }
-
-    // Saves a follow aciton
-    public function follow( User $user )
-    {
-        return $this->follows()->save($user);
-    }
-
-    // Returns all of the users this user is following
-    public function follows()
-    {
-        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
+        return $this->hasMany(Tweet::class)->latest();
     }
 
     public function getAvatarAttribute()
@@ -72,10 +62,9 @@ class User extends Authenticatable
         return "https://i.pravatar.cc/200?u=" . $this->email;
     }
 
-    public function getRouteKeyName()
+    public function path()
     {
-        return 'name';
+        return route('profile', $this->name);
     }
-
 
 }
