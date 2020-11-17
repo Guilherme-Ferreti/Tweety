@@ -48,7 +48,6 @@ class User extends Authenticatable
 
         return Tweet::whereIn('user_id', $friends)->orWhere('user_id', $this->id)->latest()->get();
     }
-
     
     // Returns tweets from only 1 user  
     public function tweets()
@@ -70,7 +69,13 @@ class User extends Authenticatable
 
     public function getAvatarAttribute()
     {
-        return "https://i.pravatar.cc/40?u=" . $this->email;
+        return "https://i.pravatar.cc/200?u=" . $this->email;
     }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
 
 }

@@ -4,13 +4,13 @@
 
     @csrf
 
-    <textarea name="body" id="" class="w-full" placeholder="What's up doc?" style="resize:none" required></textarea>
+    <textarea name="body" id="" class="w-full" placeholder="What's up doc?" style="resize:none; outline:none" required></textarea>
     
     <hr class="my-4" />
 
     <footer class="flex justify-between">
     
-        <img src="{{ auth()->user()->avatar }}" alt="Your Avatar" class="rounded-full mr-2" />
+        <img src="{{ auth()->user()->avatar }}" alt="Your Avatar" class="rounded-full mr-2" width="50" height="50" />
 
         <button type="submit" class="bg-blue-500 rounded-lg shadow py-2 px-2 text-white">Tweet-a-roo!</button>
     
