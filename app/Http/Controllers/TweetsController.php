@@ -9,9 +9,17 @@ use App\Models\Tweet;
 class TweetsController extends Controller
 {
 
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+    public function index()
     {
-        $this->middleware('auth');
+
+        return view('home', [
+            'tweets' => auth()->user()->timeline()
+        ]);
     }
 
     public function store()
