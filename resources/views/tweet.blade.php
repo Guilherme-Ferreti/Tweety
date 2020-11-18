@@ -8,7 +8,7 @@
 
     <div> 
         <a href="{{ $tweet->user->path() }}">
-            <h5 class="font-bold mb-4">{{ $tweet->user->name }}</h5>
+            <h5 class="font-bold mb-4">{{ $tweet->user->username }}</h5>
         </a>
         
         <p class="text-sm">
