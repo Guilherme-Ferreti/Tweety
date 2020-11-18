@@ -18,6 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
+    <style>
+        button, input, textarea {
+            outline: none;
+        }
+    </style>
+    
 </head>
 <body>
     <div id="app">
