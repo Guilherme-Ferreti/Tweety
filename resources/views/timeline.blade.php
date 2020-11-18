@@ -1,4 +1,4 @@
-<div class="border border-gray-300 rounded-lg">
+<div class="border border-gray-300 rounded-lg mb-5">
 
     @forelse ($tweets as $tweet)
     
@@ -9,3 +9,5 @@
     @endforelse
 
 </div>
+
+{{ $tweets->links() }}

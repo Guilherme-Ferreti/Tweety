@@ -36,6 +36,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profile');
 
-    Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+    Route::get('/explore', ExploreController::class)->name('explore');
 });
 

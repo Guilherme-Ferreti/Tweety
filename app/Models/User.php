@@ -44,7 +44,7 @@ class User extends Authenticatable
     {
         $friends = $this->follows()->pluck('id'); // Ids of everyone this user is following
 
-        return Tweet::whereIn('user_id', $friends)->orWhere('user_id', $this->id)->latest()->get();
+        return Tweet::whereIn('user_id', $friends)->orWhere('user_id', $this->id)->latest()->paginate(50);
     }
     
     // Returns tweets from only 1 user  
