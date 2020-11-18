@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\FollowsController;
+use App\Http\Controllers\ExploreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profiles/{user:username}', [ProfilesController::class, 'update'])->middleware('can:edit,user');
 
     Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profile');
+
+    Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 });
 

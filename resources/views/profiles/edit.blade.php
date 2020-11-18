@@ -15,7 +15,7 @@
                    name="name"
                    id="name"
                    value="{{ $user->name }}"
-                   required
+                   
             >
 
             @error('name')

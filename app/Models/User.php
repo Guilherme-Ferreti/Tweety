@@ -60,6 +60,11 @@ class User extends Authenticatable
         return asset('storage/' . $value);
     }
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
     public function path($append = '')
     {
         $path = route('profile', $this->username);
