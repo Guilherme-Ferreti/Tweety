@@ -24,6 +24,16 @@
         </div>
 
         <div class="mb-6">
+            <label class="block mb-2 uppercase font-bold text-xs text-gray-700"for="about">About You</label>
+
+            <input class="border border-gray-400 p-2 w-full" type="text" name="about" id="about" value="{{ $user->about }}"/>
+
+            @error('about')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="mb-6">
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="avatar">Avatar</label>
 
             <div class="flex">
@@ -37,6 +47,20 @@
             @enderror
         </div>
 
+        <div class="mb-6">
+            <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="banner">Background Banner</label>
+
+            <div class="flex">
+                <input class="border border-gray-400 p-2 w-full" type="file" name="banner" id="banner" accept="image/*" />
+                @if ($user->banner != null)
+                <img src="{{ $user->banner }}" alt="your banner" width="40" />
+                @endif
+            </div>
+
+            @error('banner')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
 
         <div class="mb-6">
             <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="email" >Email</label>

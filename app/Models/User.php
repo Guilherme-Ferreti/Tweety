@@ -13,7 +13,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, Followable;
 
-    protected $fillable = ['username', 'name', 'avatar', 'email', 'password'];
+    protected $fillable = ['username', 'name', 'about', 'banner', 'avatar', 'email', 'password'];
 
     protected $hidden = ['password', 'remember_token' ];
 
@@ -25,6 +25,13 @@ class User extends Authenticatable
         $friends = $this->follows()->pluck('id'); // Ids of everyone this user is following
 
         return Tweet::whereIn('user_id', $friends)->orWhere('user_id', $this->id)->withLikes()->latest()->paginate(50);
+    }
+
+    public function mentions()
+    {
+        $mention = '@' . auth()->user()->username;
+
+        return Tweet::where('body', 'like', '%'.$mention.'%')->withLikes()->latest()->paginate(50);
     }
     
     // Returns tweets from only 1 user  
@@ -42,6 +49,13 @@ class User extends Authenticatable
     {
         if ( $value === null ) return "https://i.pravatar.cc/200?u=" . $this->email;
 
+        return asset('storage/' . $value);
+    }
+
+    public function getBannerAttribute($value)
+    {
+        if ( $value === null ) return null;
+        
         return asset('storage/' . $value);
     }
 

@@ -29,6 +29,8 @@ class ProfilesController extends Controller
         $attributes = request()->validate([
             'username' => ['string', 'required', 'max:255', Rule::unique('users')->ignore($user), 'alpha_dash'], // Ignora o usuário atual quando procurar o username no banco de dados
             'name' => ['string', 'required', 'max:255'],
+            'about' => ['max:255'],
+            'banner' => ['file'],
             'avatar' => ['file'],
             'email' => ['string', 'required', 'max:255', 'email', Rule::unique('users')->ignore($user)],
             'password' => ['string', 'required', 'min:8', 'max:255', 'confirmed', 'password']
@@ -36,6 +38,10 @@ class ProfilesController extends Controller
 
         if ( request('avatar') ) {
             $attributes['avatar'] = request('avatar')->store('avatars');
+        }
+
+        if ( request('banner') ) {
+            $attributes['banner'] = request('banner')->store('banners');
         }
 
         $user->update($attributes);

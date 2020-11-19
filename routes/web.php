@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\TweetsLikesController;
+use App\Http\Controllers\MentionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetsController::class, 'store']);
+
+    Route::get('/tweets/mentions', [MentionsController::class, 'index'])->name('mentions');
 
     Route::post('/tweets/{tweet}/like', [TweetsLikesController::class, 'store']);
     Route::delete('/tweets/{tweet}/like', [TweetsLikesController::class, 'destroy']);
