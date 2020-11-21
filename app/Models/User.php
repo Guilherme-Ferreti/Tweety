@@ -71,4 +71,24 @@ class User extends Authenticatable
         return $append ? "{$path}/$append" : $path;
     }
 
+    public function notifications($filter = null)
+    {
+
+        switch ($filter) {
+            case 'seen':
+                return $this->hasMany(Notification::class)->whereNotNull('seen_at')->latest()->get();
+                break;
+
+            case 'new':
+                return $this->hasMany(Notification::class)->whereNull('seen_at')->latest()->get();
+                break;
+            
+            default:
+                return $this->hasMany(Notification::class)->whereNull('seen_at')->latest()->get();
+                break;
+        }
+
+        
+    }
+
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\TweetsLikesController;
 use App\Http\Controllers\MentionsController;
+use App\Http\Controllers\NotificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ use App\Http\Controllers\MentionsController;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
 
@@ -44,5 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profile');
 
     Route::get('/explore', ExploreController::class)->name('explore');
+
+    Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');
 });
 

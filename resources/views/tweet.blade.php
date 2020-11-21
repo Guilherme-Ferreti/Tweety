@@ -22,7 +22,9 @@
         @endif
 
         <div style="display:flex;justify-content:space-between; ">
+
             <x-like-buttons :tweet="$tweet"/>
+            
             <p class="text-sm text-gray-600">Posted {{$tweet->created_at->diffForHumans()}}</p>
         </div>
 
