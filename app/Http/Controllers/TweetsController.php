@@ -23,7 +23,6 @@ class TweetsController extends Controller
 
     public function store()
     {
-
         $attributes = request()->validate([
             'body' => 'required|max:255',
             'image' => 'file'
@@ -38,6 +37,13 @@ class TweetsController extends Controller
         Tweet::create($attributes);
 
         return redirect()->route('home')->with('success', 'Tweet published successfully!');
+    }
+
+    public function destroy(Tweet $tweet)
+    {
+        $tweet->delete();
+
+        return back();
     }
 
 }

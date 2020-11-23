@@ -33,8 +33,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetsController::class, 'store']);
+    Route::delete('/tweets/{tweet}', [TweetsController::class, 'destroy'])->middleware('can:destroy,tweet')->name('tweets.destroy');
 
-    Route::get('/tweets/mentions', [MentionsController::class, 'index'])->name('mentions');
+    Route::get('/mentions', [MentionsController::class, 'index'])->name('mentions');
 
     Route::post('/tweets/{tweet}/like', [TweetsLikesController::class, 'store']);
     Route::delete('/tweets/{tweet}/like', [TweetsLikesController::class, 'destroy']);
