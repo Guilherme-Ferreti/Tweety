@@ -16,7 +16,7 @@
     </li>
 
     <li> 
-        <a class="font-bold text-lg mb-4 block" href="{{ route('notifications') }}">Notifications</a>
+        <a class="font-bold text-lg mb-4 block" href="{{ route('notifications.index') }}">Notifications</a>
     </li>
 
     <li> 

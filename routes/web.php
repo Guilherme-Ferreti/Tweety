@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/explore', ExploreController::class)->name('explore');
 
-    Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');
+    Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications.index');
+    Route::delete('/notifications/{notification}', [NotificationsController::class, 'destroy'])->middleware('can:destroy,notification')->name('notifications.destroy');
+    Route::delete('/notifications', [NotificationsController::class, 'destroyAll'])->name('notifications.destroyAll');
 });
 
