@@ -18,11 +18,11 @@ class Tweet extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getImageAttribute($value)
-    {
-        if ( $value === null ) return null;
+    // public function getImageAttribute($value)
+    // {
+    //     if ( $value === null ) return null;
 
-        return asset('storage/' . $value);
-    }
+    //     return asset('storage/' . $value);
+    // }
 
 }

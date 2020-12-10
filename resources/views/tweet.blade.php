@@ -18,7 +18,7 @@
 
         @if ($tweet->image != null)
         <div style="display:flex;justify-content:center">
-            <img src="{{ $tweet->image }}" alt="" class="mb-8" style="border-radius:5px;max-height:290px"/>
+            <img src="{{ asset('storage/'.$tweet->image) }}" alt="" class="mb-8" style="border-radius:5px;max-height:290px"/>
         </div>
         @endif
 

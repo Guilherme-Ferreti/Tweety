@@ -2,7 +2,7 @@
     <form method="POST" action="/tweets" enctype="multipart/form-data">
         @csrf
 
-        <textarea name="body" class="w-full" placeholder="What's up doc?" required autofocus style="outline:none; resize:none"></textarea>
+        <textarea name="body" class="w-full" placeholder="What's up doc?" required autofocus style="outline:none; resize:none">{{ old('body') }}</textarea>
 
         <hr class="my-4">
 

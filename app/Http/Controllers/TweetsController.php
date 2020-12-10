@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Tweet;
 
@@ -41,6 +42,8 @@ class TweetsController extends Controller
 
     public function destroy(Tweet $tweet)
     {
+        if (Storage::exists($tweet->image)) Storage::delete($tweet->image);
+
         $tweet->delete();
 
         return back();
