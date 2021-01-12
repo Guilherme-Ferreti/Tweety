@@ -53,8 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/notifications', [NotificationsController::class, 'destroyAll'])->name('notifications.destroyAll');
 });
 
-Route::get('/migrate-fresh', function () {
+Route::fallback(function () {
 
-    Artisan::call('migrate:fresh');
-
+    return redirect()->route('home');
 });
