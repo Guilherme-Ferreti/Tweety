@@ -8,12 +8,25 @@ trait Likable
 {
     public function scopeWithLikes($query)
     {
-        $query->leftJoinSub(
-            'select tweet_id, SUM(CASE WHEN liked = 1 THEN 1 ELSE 0 END) likes, SUM( CASE WHEN liked = 0 THEN 1 ELSE 0 END) dislikes from likes group by tweet_id',
-            'likes',
-            'likes.tweet_id',
-            'tweets.id'
-        );
+        if (env('DB_CONNECTION') === 'sqlsrv') {
+
+            $query->leftJoinSub(
+                'select tweet_id, SUM(CASE WHEN liked = 1 THEN 1 ELSE 0 END) likes, SUM( CASE WHEN liked = 0 THEN 1 ELSE 0 END) dislikes from likes group by tweet_id',
+                'likes',
+                'likes.tweet_id',
+                'tweets.id'
+            );
+        }
+
+        if (env('DB_CONNECTION') === 'mysql') {
+            
+            $query->leftJoinSub(
+                'select tweet_id, sum(liked) likes, sum(!liked) dislikes from likes group by tweet_id',
+                'likes',
+                'likes.tweet_id',
+                'tweets.id'
+            );
+        }
     }
 
     public function like($user = null, $liked = true)
